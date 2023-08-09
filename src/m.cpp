@@ -30,6 +30,22 @@ void init(int& argc, char* argv[]) {
     assert(qapp = new QApplication(argc, argv));
 }
 
-int fini(int err) { return err; }
+int fini(int err) {
+    if (!qapp) delete qapp;
+    return err;
+}
 
 QApplication* qapp = nullptr;
+QMain* qmain = nullptr;
+
+void halt() { exit(fini()); }
+
+void gui() {
+    assert(qmain = new QMain());
+    qmain->show();
+    fini(qapp->exec());
+}
+
+QMain::QMain(QWidget* parent) : QMainWindow(parent) {}
+
+QMain::~QMain() {}

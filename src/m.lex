@@ -7,4 +7,11 @@
 %option yylineno noyywrap
 
 %%
-.   {yyerror("");}
+#.*             {}                  /// line comment
+
+".end"          {return HALT;}      /// \ directives
+".halt"         {return HALT;}
+".gui"          {return GUI;}
+
+[ \t\r\n]+      {}                  /// drop spaces
+.               {yyerror("");}      /// any undetected char

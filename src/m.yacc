@@ -3,5 +3,10 @@
     #include "m.lexer.hpp"
 %}
 
+%token HALT GUI
+
 %%
-grammar:
+grammar : | grammar ex ;
+
+ex : HALT   { halt(); }
+   | GUI    { gui();  }
