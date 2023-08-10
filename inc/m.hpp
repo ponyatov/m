@@ -1,11 +1,14 @@
 #pragma once
 
+#include <assert.h>
+
 #include <iostream>
 
 #include <QString>
 #include <QDebug>
 #include <QApplication>
 #include <QMainWindow>
+#include <QPalette>
 
 extern int main(int argc, char* argv[]);    ///< program entry point
 extern void init(int& argc, char* argv[]);  ///< system initialize
@@ -24,6 +27,9 @@ extern void halt();
 extern QApplication* qapp;
 
 class QMain : public QMainWindow {
+    static QPalette* palette;
+    void darkly();
+
    public:
     QMain(QWidget* parent = nullptr);
     ~QMain();

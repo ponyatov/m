@@ -46,6 +46,16 @@ void gui() {
     fini(qapp->exec());
 }
 
-QMain::QMain(QWidget* parent) : QMainWindow(parent) {}
+QMain::QMain(QWidget* parent) : QMainWindow(parent) {  //
+    darkly();
+}
 
-QMain::~QMain() {}
+void QMain::darkly() {
+    assert(palette = new QPalette());
+    palette->setColor(QPalette::Window, QColor(0x22, 0x22, 0x22));
+    qapp->setPalette(*palette);
+}
+
+QMain::~QMain() { delete palette; }
+
+QPalette* QMain::palette = nullptr;
